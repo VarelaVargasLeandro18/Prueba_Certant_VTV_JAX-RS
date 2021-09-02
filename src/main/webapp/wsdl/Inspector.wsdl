@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://personas.model" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://personas.model" xmlns:intf="http://personas.model" xmlns:tns1="http://time.java" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://personas.model" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://time.java"/>
+   <element name="equals">
+    <complexType>
+     <sequence>
+      <element name="obj" type="xsd:anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="equalsResponse">
+    <complexType>
+     <sequence>
+      <element name="equalsReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="toString">
+    <complexType/>
+   </element>
+   <element name="toStringResponse">
+    <complexType>
+     <sequence>
+      <element name="toStringReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="hashCode">
+    <complexType/>
+   </element>
+   <element name="hashCodeResponse">
+    <complexType>
+     <sequence>
+      <element name="hashCodeReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuario">
+    <complexType/>
+   </element>
+   <element name="getUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getContrasenia">
+    <complexType/>
+   </element>
+   <element name="getContraseniaResponse">
+    <complexType>
+     <sequence>
+      <element name="getContraseniaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setUsuario">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="setUsuarioReturn" type="impl:Inspector"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType abstract="true" name="Persona">
+    <sequence>
+     <element name="CUIL" nillable="true" type="xsd:long"/>
+     <element name="apellido" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="fechaNac" nillable="true" type="xsd:anyType"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+     <element name="nroTelefono" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Inspector">
+    <complexContent>
+     <extension base="impl:Persona">
+      <sequence>
+       <element name="contrasenia" nillable="true" type="xsd:string"/>
+       <element name="usuario" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="setContrasenia">
+    <complexType>
+     <sequence>
+      <element name="contrasenia" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setContraseniaResponse">
+    <complexType>
+     <sequence>
+      <element name="setContraseniaReturn" type="impl:Inspector"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setCUIL">
+    <complexType>
+     <sequence>
+      <element name="CUIL" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setCUILResponse">
+    <complexType>
+     <sequence>
+      <element name="setCUILReturn" type="impl:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setNombre">
+    <complexType>
+     <sequence>
+      <element name="nombre" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setNombreResponse">
+    <complexType>
+     <sequence>
+      <element name="setNombreReturn" type="impl:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setApellido">
+    <complexType>
+     <sequence>
+      <element name="apellido" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setApellidoResponse">
+    <complexType>
+     <sequence>
+      <element name="setApellidoReturn" type="impl:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setFechaNac">
+    <complexType>
+     <sequence>
+      <element name="fechaNac" type="tns1:LocalDateTime"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setFechaNacResponse">
+    <complexType>
+     <sequence>
+      <element name="setFechaNacReturn" type="impl:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setNroTelefono">
+    <complexType>
+     <sequence>
+      <element name="NroTelefono" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setNroTelefonoResponse">
+    <complexType>
+     <sequence>
+      <element name="setNroTelefonoReturn" type="impl:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCUIL">
+    <complexType/>
+   </element>
+   <element name="getCUILResponse">
+    <complexType>
+     <sequence>
+      <element name="getCUILReturn" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getNombre">
+    <complexType/>
+   </element>
+   <element name="getNombreResponse">
+    <complexType>
+     <sequence>
+      <element name="getNombreReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApellido">
+    <complexType/>
+   </element>
+   <element name="getApellidoResponse">
+    <complexType>
+     <sequence>
+      <element name="getApellidoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFechaNac">
+    <complexType/>
+   </element>
+   <element name="getFechaNacResponse">
+    <complexType>
+     <sequence>
+      <element name="getFechaNacReturn" type="tns1:LocalDateTime"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getNroTelefono">
+    <complexType/>
+   </element>
+   <element name="getNroTelefonoResponse">
+    <complexType>
+     <sequence>
+      <element name="getNroTelefonoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEmail">
+    <complexType/>
+   </element>
+   <element name="getEmailResponse">
+    <complexType>
+     <sequence>
+      <element name="getEmailReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setEmail">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setEmailResponse">
+    <complexType>
+     <sequence>
+      <element name="setEmailReturn" type="impl:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getNroTelefonoResponse">
+
+      <wsdl:part element="impl:getNroTelefonoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setNombreRequest">
+
+      <wsdl:part element="impl:setNombre" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="equalsResponse">
+
+      <wsdl:part element="impl:equalsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="toStringResponse">
+
+      <wsdl:part element="impl:toStringResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNombreRequest">
+
+      <wsdl:part element="impl:getNombre" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEmailRequest">
+
+      <wsdl:part element="impl:getEmail" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="equalsRequest">
+
+      <wsdl:part element="impl:equals" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setNroTelefonoRequest">
+
+      <wsdl:part element="impl:setNroTelefono" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNroTelefonoRequest">
+
+      <wsdl:part element="impl:getNroTelefono" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setContraseniaResponse">
+
+      <wsdl:part element="impl:setContraseniaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="hashCodeResponse">
+
+      <wsdl:part element="impl:hashCodeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFechaNacResponse">
+
+      <wsdl:part element="impl:getFechaNacResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setUsuarioResponse">
+
+      <wsdl:part element="impl:setUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNombreResponse">
+
+      <wsdl:part element="impl:getNombreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setApellidoRequest">
+
+      <wsdl:part element="impl:setApellido" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setEmailRequest">
+
+      <wsdl:part element="impl:setEmail" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setApellidoResponse">
+
+      <wsdl:part element="impl:setApellidoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="toStringRequest">
+
+      <wsdl:part element="impl:toString" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setUsuarioRequest">
+
+      <wsdl:part element="impl:setUsuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setNombreResponse">
+
+      <wsdl:part element="impl:setNombreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setContraseniaRequest">
+
+      <wsdl:part element="impl:setContrasenia" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setEmailResponse">
+
+      <wsdl:part element="impl:setEmailResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFechaNacRequest">
+
+      <wsdl:part element="impl:getFechaNac" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="hashCodeRequest">
+
+      <wsdl:part element="impl:hashCode" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setFechaNacRequest">
+
+      <wsdl:part element="impl:setFechaNac" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setCUILRequest">
+
+      <wsdl:part element="impl:setCUIL" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApellidoRequest">
+
+      <wsdl:part element="impl:getApellido" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEmailResponse">
+
+      <wsdl:part element="impl:getEmailResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCUILRequest">
+
+      <wsdl:part element="impl:getCUIL" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setCUILResponse">
+
+      <wsdl:part element="impl:setCUILResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioResponse">
+
+      <wsdl:part element="impl:getUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setFechaNacResponse">
+
+      <wsdl:part element="impl:setFechaNacResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setNroTelefonoResponse">
+
+      <wsdl:part element="impl:setNroTelefonoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioRequest">
+
+      <wsdl:part element="impl:getUsuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getContraseniaResponse">
+
+      <wsdl:part element="impl:getContraseniaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getContraseniaRequest">
+
+      <wsdl:part element="impl:getContrasenia" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApellidoResponse">
+
+      <wsdl:part element="impl:getApellidoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCUILResponse">
+
+      <wsdl:part element="impl:getCUILResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Inspector">
+
+      <wsdl:operation name="equals">
+
+         <wsdl:input message="impl:equalsRequest" name="equalsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:equalsResponse" name="equalsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="toString">
+
+         <wsdl:input message="impl:toStringRequest" name="toStringRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:toStringResponse" name="toStringResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hashCode">
+
+         <wsdl:input message="impl:hashCodeRequest" name="hashCodeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:hashCodeResponse" name="hashCodeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuario">
+
+         <wsdl:input message="impl:getUsuarioRequest" name="getUsuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getUsuarioResponse" name="getUsuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getContrasenia">
+
+         <wsdl:input message="impl:getContraseniaRequest" name="getContraseniaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getContraseniaResponse" name="getContraseniaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUsuario">
+
+         <wsdl:input message="impl:setUsuarioRequest" name="setUsuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setUsuarioResponse" name="setUsuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setContrasenia">
+
+         <wsdl:input message="impl:setContraseniaRequest" name="setContraseniaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setContraseniaResponse" name="setContraseniaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setCUIL">
+
+         <wsdl:input message="impl:setCUILRequest" name="setCUILRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setCUILResponse" name="setCUILResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setNombre">
+
+         <wsdl:input message="impl:setNombreRequest" name="setNombreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setNombreResponse" name="setNombreResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setApellido">
+
+         <wsdl:input message="impl:setApellidoRequest" name="setApellidoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setApellidoResponse" name="setApellidoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setFechaNac">
+
+         <wsdl:input message="impl:setFechaNacRequest" name="setFechaNacRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setFechaNacResponse" name="setFechaNacResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setNroTelefono">
+
+         <wsdl:input message="impl:setNroTelefonoRequest" name="setNroTelefonoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setNroTelefonoResponse" name="setNroTelefonoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCUIL">
+
+         <wsdl:input message="impl:getCUILRequest" name="getCUILRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCUILResponse" name="getCUILResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNombre">
+
+         <wsdl:input message="impl:getNombreRequest" name="getNombreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getNombreResponse" name="getNombreResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApellido">
+
+         <wsdl:input message="impl:getApellidoRequest" name="getApellidoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getApellidoResponse" name="getApellidoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFechaNac">
+
+         <wsdl:input message="impl:getFechaNacRequest" name="getFechaNacRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFechaNacResponse" name="getFechaNacResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNroTelefono">
+
+         <wsdl:input message="impl:getNroTelefonoRequest" name="getNroTelefonoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getNroTelefonoResponse" name="getNroTelefonoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEmail">
+
+         <wsdl:input message="impl:getEmailRequest" name="getEmailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEmailResponse" name="getEmailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setEmail">
+
+         <wsdl:input message="impl:setEmailRequest" name="setEmailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setEmailResponse" name="setEmailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="InspectorSoapBinding" type="impl:Inspector">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="equals">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="equalsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="equalsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="toString">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="toStringRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="toStringResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hashCode">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="hashCodeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="hashCodeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getContrasenia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getContraseniaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getContraseniaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setContrasenia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setContraseniaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setContraseniaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setCUIL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setCUILRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setCUILResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setNombre">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setNombreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setNombreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setApellido">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setApellidoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setApellidoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setFechaNac">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setFechaNacRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setFechaNacResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setNroTelefono">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setNroTelefonoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setNroTelefonoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCUIL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCUILRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCUILResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNombre">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNombreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNombreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApellido">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getApellidoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getApellidoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFechaNac">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFechaNacRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFechaNacResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNroTelefono">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNroTelefonoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNroTelefonoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEmail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEmailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEmailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setEmail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setEmailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setEmailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="InspectorService">
+
+      <wsdl:port binding="impl:InspectorSoapBinding" name="Inspector">
+
+         <wsdlsoap:address location="http://localhost:8080/VTV_Dynamic_Web_Proyect/services/Inspector"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
