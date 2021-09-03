@@ -23,40 +23,5 @@ import javax.ws.rs.core.Application;
  */
 
 @ApplicationPath("VTV")
-public class ApplicationConfig extends Application 
-{
-    @Override
-    public Set<Class<?>> getClasses() 
-    {
-        Set<Class<?>> resources = new java.util.HashSet<>();
-        
-        try
-        {
-            Class jacksonProvider = Class.forName("org.glassfish.jersey.containers");
-            
-            resources.add(jacksonProvider);
-        }
-        catch (ClassNotFoundException ex)
-        {
-            
-        }
-        
-        this.addRestResourceClasses(resources);
-        return resources;
-    }
-
-    /**
-     * Do not modify addRestResourceClasses() method.
-     * It is automatically populated with
-     * all resources defined in the project.
-     * If required, comment out calling this method in getClasses().
-     */
-    private void addRestResourceClasses(Set<Class<?>> resources) 
-    {
-        resources.add( rest.RESTAuto.class );
-        resources.add( rest.RESTInspeccion.class );
-        resources.add( rest.RESTInspector.class );
-        resources.add( rest.RESTPropietario.class );
-    }
-    
+public class ApplicationConfig extends Application {
 }
