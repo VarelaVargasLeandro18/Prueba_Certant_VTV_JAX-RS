@@ -36,8 +36,8 @@ public class Propietario extends Persona<Propietario> implements Serializable {
     @JoinColumn(name="tipo", referencedColumnName="Id", foreignKey=@ForeignKey(name="FK_TipoPropietario"), nullable=false)
     private TipoPropietario tipo;
     
-    /*@OneToMany(mappedBy="propietario")
-    private List<Auto> autos;*/
+    @OneToMany(mappedBy="propietario")
+    private List<Auto> autos;
 
     public Propietario() {}
 
@@ -47,8 +47,8 @@ public class Propietario extends Persona<Propietario> implements Serializable {
     }
     
     @XmlElement
-    public String getTipo() {
-        return tipo.toString();
+    public TipoPropietario getTipo() {
+        return tipo;
     }
 
     @XmlElement
@@ -57,7 +57,7 @@ public class Propietario extends Persona<Propietario> implements Serializable {
         return this;
     }
     
-    /*@XmlElement
+    @XmlElement
     public Propietario setAutos( List<Auto> autos ) {
     	this.autos = autos;
     	return this;
@@ -66,13 +66,13 @@ public class Propietario extends Persona<Propietario> implements Serializable {
     @XmlElement
     public List<Auto> getAutos() {
     	return this.autos;
-    }*/
+    }
     
     @Override
     public String toString() {
         JSONObject json = new JSONObject(super.toString());
         
-        json.put("tipo", this.tipo.toString());
+        json.put("tipo", this.tipo);
         
         return json.toString(4);
     }

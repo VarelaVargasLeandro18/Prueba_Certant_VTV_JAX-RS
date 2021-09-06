@@ -15,11 +15,13 @@ import dao.PropietarioDAO;
 import dao_abstract.CreateEntityException;
 import dao_abstract.DeleteEntityException;
 import dao_abstract.ReadEntityException;
+import jwt.JWTAuthorization;
 import model.personas.Propietario;
 
 @Path("propietario")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@JWTAuthorization
 public class RESTPropietario {
 
 	private PropietarioDAO dao;

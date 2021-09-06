@@ -20,6 +20,7 @@ import dao_abstract.CreateEntityException;
 import dao_abstract.DeleteEntityException;
 import dao_abstract.ReadEntityException;
 import dao_abstract.UpdateEntityException;
+import jwt.JWTAuthorization;
 import model.Auto;
 
 
@@ -28,6 +29,7 @@ import model.Auto;
 // @RequestScoped Innecesario
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@JWTAuthorization
 public class RESTAuto {
 	
 	private AutoDAO dao;

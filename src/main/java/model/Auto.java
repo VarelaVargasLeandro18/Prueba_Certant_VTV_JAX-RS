@@ -1,19 +1,22 @@
 package model;
 
-import model.personas.Propietario;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.persistence.Column;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.json.JSONObject;
+
+import model.personas.Propietario;
 
 /**
  *
@@ -63,7 +66,7 @@ public class Auto implements Serializable {
         return modelo;
     }
 
-    @XmlElement
+    @XmlTransient
     public Propietario getPropietario() {
         return propietario;
     }
@@ -98,7 +101,6 @@ public class Auto implements Serializable {
         json.put( "Dominio" , this.dominio );
         json.put( "Marca", this.marca );
         json.put( "Modelo", this.modelo );
-        json.put( "Propietario", this.propietario.toString() );
         
         return json.toString(4);
     }

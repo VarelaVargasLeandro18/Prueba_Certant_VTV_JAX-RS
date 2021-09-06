@@ -2,12 +2,17 @@ package model.personas;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.json.JSONObject;
+
+import model.Auto;
 
 /**
  *
@@ -22,9 +27,9 @@ public class Inspector extends Persona<Inspector> implements Serializable {
     
     /* NO ES UNA FORMA SEGURA DE MANEJAR UNA CONTRASEÑA PERO LO UTILIZO A FINES PRÁCTICOS. */
     @Column(name="contrasenia", nullable=false)
-    private String contrasenia;
+    private String contrasenia;    
 
-    public Inspector() {}
+	public Inspector() {}
     
     public Inspector(String usuario, String contrasenia, Long CUIL, String nombre, String apellido, LocalDateTime fechaNac, String email, String NroTelefono) {
         super(CUIL, nombre, apellido, fechaNac, email, NroTelefono);

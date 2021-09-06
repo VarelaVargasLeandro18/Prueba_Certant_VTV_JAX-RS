@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 
 import org.json.JSONObject;
 
@@ -70,34 +71,42 @@ public class Observacion implements Serializable, IEstadoGeneral {
     }
 
     //<editor-fold desc="Getters" defaultstate="collapsed">
+    @XmlElement
     public Long getId() {
         return Id;
     }
 
+    @XmlElement
     public String getLuces() {
         return luces.getEstado();
     }
 
+    @XmlElement
     public String getPatente() {
         return patente.getEstado();
     }
 
+    @XmlElement
     public String getEspejos() {
         return espejos.getEstado();
     }
 
+    @XmlElement
     public String getChasis() {
         return chasis.getEstado();
     }
 
+    @XmlElement
     public String getVidrios() {
         return vidrios.getEstado();
     }
 
+    @XmlElement
     public String getSeguridad() {
         return seguridad.getEstado();
     }
 
+    @XmlElement
     public String getEmergencia() {
         return emergencia.getEstado();
     }

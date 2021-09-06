@@ -15,11 +15,13 @@ import dao.InspectorDAO;
 import dao_abstract.CreateEntityException;
 import dao_abstract.DeleteEntityException;
 import dao_abstract.ReadEntityException;
+import jwt.JWTAuthorization;
 import model.personas.Inspector;
 
 @Path("inspector")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@JWTAuthorization
 public class RESTInspector {
 	
 	private InspectorDAO dao;	

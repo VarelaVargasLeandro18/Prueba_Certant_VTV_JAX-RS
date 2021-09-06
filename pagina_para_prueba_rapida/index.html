@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ES-es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            font-size: 24px;
+        }
+
+        .flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .form {
+            padding: 2em;
+            outline: 1px solid black;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .label {
+            margin: .3em;
+        }
+
+        .button {
+            width: 50%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .btns-flex {
+            margin: 5em auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th:first-child,
+        td:first-child {
+            border-left: none;
+        }
+
+        th:last-child,
+        td:last-child {
+            border-right: none;
+        }
+
+    </style>
+    <title> Prueba Rápida </title>
+</head>
+<body>
+    
+    <div id="form-iniSession" class="flex">
+        <form id="form-inicioDeSesion" class="form" action="#">
+            <label class="label" for="nombreDeUsuario">
+                Nombre de Usuario: 
+                <input type="text" name="nombreDeUsuario">
+            </label>
+
+            <label class="label" for="contrasenia">
+                Contraseña: 
+                <input type="password" name="contrasenia">
+            </label>
+
+            <button id="inicioDeSesion" class="button">Iniciar Sesion</button>
+        </form>
+    </div>
+
+    <div id="btns" class="hidden">
+        <button class="request" value="auto">Auto</button>
+        <button class="request" value="inspeccion">Inspeccion</button>
+        <button class="request" value="propietario">Propietario</button>
+    </div>
+
+    <p></p>
+
+</body>
+
+<script>
+    let token = '';
+    const url = 'http://localhost:8080/VTV_Dynamic_Web_Proyect/VTV/';
+    const $ = (query) => document.querySelector(query);
+    const $all = (query) => document.querySelectorAll(query);
+
+    (async function main() {        
+        await setClickEvent();
+    })();
+
+    async function setClickEvent () {
+
+        document.addEventListener( 'click', async (event) => {
+            const emmiter = event.target;
+            event.preventDefault();
+
+            if ( emmiter.matches("#inicioDeSesion") ) {
+                event.preventDefault();
+                
+                try {
+                    await setToken();
+                } catch (err) {
+                    alert ( err )
+                    return
+                }
+
+                showBtns();
+                hideForm();
+
+            }
+
+            if ( emmiter.matches(".request") ) {
+                try {
+                    console.log( await request(emmiter.value) );
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+        });
+
+    }
+
+    async function setToken () {
+        
+        try {
+            token = await iniciarSesion($('#form-inicioDeSesion'));
+        } catch (error) {
+            throw error;
+        }
+
+    }
+
+    async function iniciarSesion(form) {
+
+        try {
+            const body = JSON.stringify( {
+                    "userName": form.nombreDeUsuario?.value,
+                    "password": form.contrasenia?.value
+            });
+            const headers = new Headers();
+            headers.append( 'Content-Type', 'application/json' );
+            headers.append( 'Content-Length', body.length );
+            const response = await fetch( url + 'log-in', {
+                method: 'POST',
+                headers,
+                body
+            } );
+
+            if ( 200 > response.status || response.status > 299 ) throw new Error(response.status, response.text);
+
+            return response.text();
+        } catch ( error ) {
+            throw error;
+        }    
+
+    }
+
+    async function request(endpoint) {
+
+        try {
+            const headers = new Headers();
+            headers.append('Authorization', token);
+
+            const response = await fetch( url + endpoint, {
+                method: 'GET',
+                headers
+            } );
+
+            if ( 200 > response.status || response.status > 299 ) throw new Error(response.status, response.text);
+
+            return await response.json();
+        } catch ( error ) {
+            throw error;
+        }
+
+    }
+
+    function showBtns () {
+        $('#btns').classList.add("btns-flex");
+        $('#btns').classList.toggle("hidden");
+    }
+
+    function hideForm () {
+        $('#form-iniSession').classList.toggle("hidden");
+    }
+</script>
+
+</html>
