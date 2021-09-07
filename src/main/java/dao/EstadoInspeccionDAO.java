@@ -8,7 +8,7 @@ import model.inspeccion.EstadoInspeccion;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public final class EstadoInspeccionDAO extends AbstractDAO<EstadoInspeccion, Long> {
+public class EstadoInspeccionDAO extends AbstractDAO<EstadoInspeccion, Long> {
 
     public EstadoInspeccionDAO() {
         super(EstadoInspeccion.class);

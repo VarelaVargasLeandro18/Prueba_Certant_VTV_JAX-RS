@@ -2,6 +2,7 @@ package rest;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,7 +27,6 @@ import model.Auto;
 
 
 @Path("auto")
-// @RequestScoped Innecesario
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @JWTAuthorization
@@ -34,9 +34,11 @@ public class RESTAuto {
 	
 	private AutoDAO dao;
 	
-	public RESTAuto () {
+	public RESTAuto (AutoDAO dao) {
 		this.dao = new AutoDAO();
 	}
+	
+	public RESTAuto() {}
 	
 	@GET
 	public List<Auto> getAutos() throws ReadEntityException {

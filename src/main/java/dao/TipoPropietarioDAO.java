@@ -8,7 +8,7 @@ import model.personas.TipoPropietario;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public final class TipoPropietarioDAO extends AbstractDAO<TipoPropietario, Long> {
+public class TipoPropietarioDAO extends AbstractDAO<TipoPropietario, Long> {
     
     public TipoPropietarioDAO() {
         super(TipoPropietario.class);

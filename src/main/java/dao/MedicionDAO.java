@@ -7,7 +7,7 @@ import model.inspeccion.Medicion;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public final class MedicionDAO extends AbstractDAO<Medicion, Long> {
+public class MedicionDAO extends AbstractDAO<Medicion, Long> {
     
     public MedicionDAO() {
         super(Medicion.class);

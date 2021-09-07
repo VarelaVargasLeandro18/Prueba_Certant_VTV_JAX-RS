@@ -12,7 +12,7 @@ import model.inspeccion.EstadoInspeccion;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public final class AutoDAO extends AbstractDAO<Auto, String> {
+public class AutoDAO extends AbstractDAO<Auto, String> {
 
     public AutoDAO() {
         super(Auto.class);

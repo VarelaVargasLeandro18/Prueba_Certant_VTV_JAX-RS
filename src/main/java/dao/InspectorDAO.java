@@ -8,7 +8,7 @@ import model.personas.Inspector;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public final class InspectorDAO extends AbstractDAO<Inspector, Long> {
+public class InspectorDAO extends AbstractDAO<Inspector, Long> {
 
     public InspectorDAO() {
         super(Inspector.class);

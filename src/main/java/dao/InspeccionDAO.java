@@ -12,7 +12,7 @@ import model.personas.Propietario;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public final class InspeccionDAO extends AbstractDAO<Inspeccion, Long> {
+public class InspeccionDAO extends AbstractDAO<Inspeccion, Long> {
     
     public InspeccionDAO() {
         super(Inspeccion.class);
