@@ -11,6 +11,7 @@ import dao_abstract.IInspectorDAO;
 import dao_abstract.exceptions.CreateEntityException;
 import dao_abstract.exceptions.DeleteEntityException;
 import dao_abstract.exceptions.ReadEntityException;
+import dao_abstract.exceptions.UpdateEntityException;
 import jwt.JWTAuthorization;
 import model.personas.Inspector;
 import rest.interfaces.IRESTInspector;
@@ -28,25 +29,31 @@ public class RESTInspector implements IRESTInspector {
 	}
 	
 	@Override
-	public List<Inspector> getInspectors() throws ReadEntityException {
+	public List<Inspector> get() throws ReadEntityException {
 		return this.dao.readAll();
 	}
 	
 	@Override
-	public Inspector getInspectorById( String InspectorId ) throws ReadEntityException {
-		return this.dao.readOne( Long.parseLong(InspectorId) );
+	public Inspector get( Long InspectorId ) throws ReadEntityException {
+		return this.dao.readOne( InspectorId );
 	}
 	
 	@Override
-	public void postInspector (Inspector Inspector) throws CreateEntityException {
+	public void post(Inspector Inspector) throws CreateEntityException {
 		this.dao.create(Inspector);
 	}
 	
 	@Override
-	public Inspector deleteInspector ( String InspectorId ) throws ReadEntityException, DeleteEntityException {
-		Inspector Inspector = this.dao.readOne( Long.parseLong(InspectorId) );
+	public Inspector delete( Long InspectorId ) throws ReadEntityException, DeleteEntityException {
+		Inspector Inspector = this.dao.readOne( InspectorId );
 		this.dao.delete(Inspector);
 		return Inspector;
+	}
+
+	@Override
+	public Inspector update(Inspector auto, Long Id) throws UpdateEntityException, ReadEntityException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

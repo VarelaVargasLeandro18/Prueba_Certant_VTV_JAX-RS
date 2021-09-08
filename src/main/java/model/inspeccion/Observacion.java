@@ -59,7 +59,16 @@ public class Observacion implements Serializable, IEstadoGeneral {
 
     public Observacion() {}
 
-    public Observacion(Long Id, EstadoInspeccion luces, EstadoInspeccion patente, EstadoInspeccion espejos, EstadoInspeccion chasis, EstadoInspeccion vidrios, EstadoInspeccion seguridad, EstadoInspeccion emergencia) {
+    public Observacion(
+    		Long Id, 
+    		EstadoInspeccion luces, 
+    		EstadoInspeccion patente, 
+    		EstadoInspeccion espejos, 
+    		EstadoInspeccion chasis, 
+    		EstadoInspeccion vidrios, 
+    		EstadoInspeccion seguridad, 
+    		EstadoInspeccion emergencia
+    ) {
         this.Id = Id;
         this.luces = luces;
         this.patente = patente;

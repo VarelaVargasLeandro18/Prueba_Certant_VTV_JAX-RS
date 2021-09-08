@@ -13,20 +13,4 @@ import dao_abstract.exceptions.DeleteEntityException;
 import dao_abstract.exceptions.ReadEntityException;
 import model.personas.Inspector;
 
-public interface IRESTInspector {
-	
-	@GET
-	public List<Inspector> getInspectors() throws ReadEntityException;
-	
-	@GET
-	@Path("/{InspectorId}")
-	public Inspector getInspectorById( @PathParam("InspectorId") String InspectorId ) throws ReadEntityException;
-	
-	@POST
-	public void postInspector (Inspector Inspector) throws CreateEntityException;
-	
-	@DELETE
-	@Path("/{InspectorId}")
-	public Inspector deleteInspector ( @PathParam("InspectorId") String InspectorId ) throws ReadEntityException, DeleteEntityException;
-	
-}
+public interface IRESTInspector extends IREST <Inspector, Long> {}

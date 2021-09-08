@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -18,10 +19,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
+import org.json.JSONObject;
+
 import model.Auto;
 import model.personas.Inspector;
 import model.personas.TipoPropietario;
-import org.json.JSONObject;
 
 /**
  *
@@ -74,7 +76,14 @@ public class Inspeccion implements Serializable, IEstadoGeneral {
 
     public Inspeccion() {}
 
-    public Inspeccion(LocalDateTime fecha, TipoPropietario tipo, Inspector inspector, Auto inspeccionado, Observacion observacion, Medicion medicion) {
+    public Inspeccion(
+    		LocalDateTime fecha, 
+    		TipoPropietario tipo, 
+    		Inspector inspector, 
+    		Auto inspeccionado, 
+    		Observacion observacion, 
+    		Medicion medicion
+    ) {
         this.fecha = fecha;
         this.tipo = tipo;
         this.inspector = inspector;

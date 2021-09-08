@@ -41,7 +41,15 @@ public class Propietario extends Persona<Propietario> implements Serializable {
 
     public Propietario() {}
 
-    public Propietario(TipoPropietario tipo, Long CUIL, String nombre, String apellido, LocalDateTime fechaNac, String email, String NroTelefono) {
+    public Propietario(
+    		TipoPropietario tipo, 
+    		Long CUIL, 
+    		String nombre, 
+    		String apellido, 
+    		LocalDateTime fechaNac, 
+    		String email, 
+    		String NroTelefono
+    ) {
         super(CUIL, nombre, apellido, fechaNac, email, NroTelefono);
         this.tipo = tipo;
     }

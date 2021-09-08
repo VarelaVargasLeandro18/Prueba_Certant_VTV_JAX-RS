@@ -34,12 +34,17 @@ public class EstadoInspeccion implements Serializable {
     
     public EstadoInspeccion () {}
 
-    public EstadoInspeccion(String estado, int veracidad) {
+    public EstadoInspeccion(
+    		String estado, 
+    		int veracidad
+    ) {
         this.estado = estado;
         this.veracidad = veracidad;
     }
     
-    public EstadoInspeccion( EstadoInspeccion estadoInspeccion ) {
+    public EstadoInspeccion( 
+    		EstadoInspeccion estadoInspeccion
+    ) {
         this.Id = estadoInspeccion.Id;
         this.estado = estadoInspeccion.estado;
         this.veracidad = estadoInspeccion.veracidad;

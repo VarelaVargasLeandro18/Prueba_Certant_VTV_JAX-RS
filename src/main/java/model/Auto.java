@@ -43,7 +43,12 @@ public class Auto implements Serializable {
     
     public Auto() {}
 
-    public Auto(String dominio, String marca, String modelo, Propietario propietario) {
+    public Auto(
+    		String dominio, 
+    		String marca, 
+    		String modelo, 
+    		Propietario propietario
+    ) {
         this.dominio = dominio;
         this.marca = marca;
         this.modelo = modelo;

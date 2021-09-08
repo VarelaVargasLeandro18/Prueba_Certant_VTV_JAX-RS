@@ -9,11 +9,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -31,9 +29,7 @@ import model.inspeccion.EstadoInspeccion;
 import rest.RESTAuto;
 
 @ExtendWith(MockitoExtension.class)
-
 @TestInstance(Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestAutoController {
   
 	private final IAutoDAO dao;
@@ -52,17 +48,16 @@ public class TestAutoController {
 	}
     
 	//==========================================================================
-	
     @BeforeAll
-    public void prepareMock() throws ReadEntityException, DeleteEntityException, CreateEntityException, UpdateEntityException {
-    	this.crearObjetosNecesariosParaMocking();
+    public void prepareMocks() throws ReadEntityException, DeleteEntityException, CreateEntityException, UpdateEntityException {
+    	this.prepareNecessaryObjects();
     	this.prepareMockExceptions();
     	
     	this.prepareMockRead();
     	this.prepareMockEspecialMethods();
     }
     
-    private void crearObjetosNecesariosParaMocking() {
+    private void prepareNecessaryObjects() {
 		this.auto = new Auto("AA 23 LF", "Marca", "modelo", null);
 		this.apto = new EstadoInspeccion( "Apto", 0 );
 		this.autoLista = new ArrayList<>(1);
@@ -95,7 +90,7 @@ public class TestAutoController {
     @DisplayName("Buscar un Null - ReadEntityException")
     public void readEntityException () {
     	assertThrows( ReadEntityException.class, () -> {
-    		this.controller.getAutoById(null);
+    		this.controller.get(null);
     	});
     }
     
@@ -103,7 +98,7 @@ public class TestAutoController {
     @DisplayName( "Insertar un Null - CreateEntityException" )
     public void createEntityException() {
     	assertThrows( CreateEntityException.class, () -> {
-    		this.controller.postAuto(null);
+    		this.controller.post(null);
     	});
     }
     
@@ -111,14 +106,14 @@ public class TestAutoController {
     @DisplayName( "Update de un Null - UpdateEntityException" )
     public void updateEntityException() {
     	assertThrows( UpdateEntityException.class, () -> {
-    		this.controller.updateAuto(this.auto, "AA 23 LF");
+    		this.controller.update(this.auto, "AA 23 LF");
     	});
     }
     
     @Test
     @DisplayName( "Lectura Correcta de una entidad" )
     public void readEntity() throws ReadEntityException {
-    	Auto returned = this.controller.getAutoById("AA 23 LF");
+    	Auto returned = this.controller.get("AA 23 LF");
     	assertEquals( this.auto, returned );
     }
     

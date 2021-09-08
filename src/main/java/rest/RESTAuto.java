@@ -32,29 +32,29 @@ public class RESTAuto implements IRESTAuto {
 	}
 	
 	@Override
-	public List<Auto> getAutos() throws ReadEntityException{
+	public List<Auto> get() throws ReadEntityException{
 		return this.dao.readAll();
 	}
 	
 	@Override
-	public Auto getAutoById( String autoId ) throws ReadEntityException{
+	public Auto get( String autoId ) throws ReadEntityException{
 		return this.dao.readOne(autoId);
 	}
 
 	@Override
-	public void postAuto (Auto auto) throws CreateEntityException {
+	public void post(Auto auto) throws CreateEntityException {
 		this.dao.create(auto);
 	}
 	
 	@Override
-	public Auto deleteAuto ( String autoId ) throws ReadEntityException, DeleteEntityException {
+	public Auto delete( String autoId ) throws ReadEntityException, DeleteEntityException {
 		Auto auto = this.dao.readOne(autoId);
 		this.dao.delete(auto);
 		return auto;
 	}
 	
 	@Override
-	public Auto updateAuto ( Auto auto, String autoId ) throws UpdateEntityException, ReadEntityException {
+	public Auto update( Auto auto, String autoId ) throws UpdateEntityException, ReadEntityException {
 		Auto autoPersisted = this.dao.readOne(autoId);
 		
 		autoPersisted.setMarca( auto.getMarca() );

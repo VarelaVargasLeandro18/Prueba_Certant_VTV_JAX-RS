@@ -51,7 +51,13 @@ public class Medicion implements Serializable, IEstadoGeneral {
     public Medicion() {
     }
 
-    public Medicion(Long Id, EstadoInspeccion sistemaDeFrenos, EstadoInspeccion suspension, EstadoInspeccion direccion, EstadoInspeccion trenDelantero) {
+    public Medicion(
+    		Long Id, 
+    		EstadoInspeccion sistemaDeFrenos, 
+    		EstadoInspeccion suspension, 
+    		EstadoInspeccion direccion, 
+    		EstadoInspeccion trenDelantero
+    ) {
         this.Id = Id;
         this.sistemaDeFrenos = sistemaDeFrenos;
         this.suspension = suspension;

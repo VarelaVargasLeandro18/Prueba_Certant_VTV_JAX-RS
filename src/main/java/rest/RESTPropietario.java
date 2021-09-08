@@ -11,6 +11,7 @@ import dao_abstract.IPropietarioDAO;
 import dao_abstract.exceptions.CreateEntityException;
 import dao_abstract.exceptions.DeleteEntityException;
 import dao_abstract.exceptions.ReadEntityException;
+import dao_abstract.exceptions.UpdateEntityException;
 import jwt.JWTAuthorization;
 import model.personas.Propietario;
 import rest.interfaces.IRESTPropietario;
@@ -28,25 +29,31 @@ public class RESTPropietario implements IRESTPropietario {
 	}
 	
 	@Override
-	public List<Propietario> getPropietarios() throws ReadEntityException {
+	public List<Propietario> get() throws ReadEntityException {
 		return this.dao.readAll();
 	}
 	
 	@Override
-	public Propietario getPropietarioById( String PropietarioId ) throws ReadEntityException {
-		return this.dao.readOne( Long.parseLong(PropietarioId) );
+	public Propietario get( Long PropietarioId ) throws ReadEntityException {
+		return this.dao.readOne( PropietarioId );
 	}
 	
 	@Override
-	public void postPropietario (Propietario Propietario) throws CreateEntityException {
+	public void post(Propietario Propietario) throws CreateEntityException {
 		this.dao.create(Propietario);
 	}
 	
 	@Override
-	public Propietario deletePropietario ( String PropietarioId ) throws ReadEntityException, DeleteEntityException {
-		Propietario Propietario = this.dao.readOne( Long.parseLong(PropietarioId) );
+	public Propietario delete( Long PropietarioId ) throws ReadEntityException, DeleteEntityException {
+		Propietario Propietario = this.dao.readOne( PropietarioId );
 		this.dao.delete(Propietario);
 		return Propietario;
+	}
+
+	@Override
+	public Propietario update(Propietario auto, Long Id) throws UpdateEntityException, ReadEntityException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

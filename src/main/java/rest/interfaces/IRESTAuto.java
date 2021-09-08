@@ -15,25 +15,7 @@ import dao_abstract.exceptions.ReadEntityException;
 import dao_abstract.exceptions.UpdateEntityException;
 import model.Auto;
 
-public interface IRESTAuto {
-	
-	@GET
-	public List<Auto> getAutos() throws ReadEntityException;
-	
-	@GET
-	@Path("/{autoId}")
-	public Auto getAutoById( @PathParam("autoId") String autoId ) throws ReadEntityException;
-	
-	@POST
-	public void postAuto (Auto auto) throws CreateEntityException;
-	
-	@DELETE
-	@Path("/{autoId}")
-	public Auto deleteAuto ( @PathParam("autoId") String autoId ) throws ReadEntityException, DeleteEntityException;
-	
-	@PUT
-	@Path("/{autoId}")
-	public Auto updateAuto ( Auto auto, @PathParam("autoId") String autoId ) throws UpdateEntityException, ReadEntityException;
+public interface IRESTAuto extends IREST<Auto, String> {
 	
 	@GET
 	@Path("/vencidos")
