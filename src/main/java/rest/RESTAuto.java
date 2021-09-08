@@ -2,7 +2,6 @@ package rest;
 
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,18 +12,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-//import org.glassfish.jersey.process.internal.RequestScoped;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import dao.AutoDAO;
 import dao.EstadoInspeccionDAO;
-import dao_abstract.CreateEntityException;
-import dao_abstract.DeleteEntityException;
-import dao_abstract.ReadEntityException;
-import dao_abstract.UpdateEntityException;
+import dao_abstract.IAutoDAO;
+import dao_abstract.exceptions.CreateEntityException;
+import dao_abstract.exceptions.DeleteEntityException;
+import dao_abstract.exceptions.ReadEntityException;
+import dao_abstract.exceptions.UpdateEntityException;
 import jwt.JWTAuthorization;
 import model.Auto;
-
-
 
 @Path("auto")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -32,13 +29,11 @@ import model.Auto;
 @JWTAuthorization
 public class RESTAuto {
 	
-	private AutoDAO dao;
+	private IAutoDAO dao;
 	
-	public RESTAuto (AutoDAO dao) {
-		this.dao = new AutoDAO();
+	public RESTAuto (IAutoDAO dao) {
+		this.dao = dao;
 	}
-	
-	public RESTAuto() {}
 	
 	@GET
 	public List<Auto> getAutos() throws ReadEntityException {

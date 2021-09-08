@@ -1,4 +1,4 @@
-package dao_abstract;
+package dao_abstract.exceptions;
 
 /**
  *

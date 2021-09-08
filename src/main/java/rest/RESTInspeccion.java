@@ -11,24 +11,23 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dao.InspeccionDAO;
-import dao_abstract.CreateEntityException;
-import dao_abstract.DeleteEntityException;
-import dao_abstract.ReadEntityException;
+import dao_abstract.IInspeccionDAO;
+import dao_abstract.exceptions.CreateEntityException;
+import dao_abstract.exceptions.DeleteEntityException;
+import dao_abstract.exceptions.ReadEntityException;
 import jwt.JWTAuthorization;
 import model.inspeccion.Inspeccion;
 
 @Path("inspeccion")
-// @RequestScoped Innecesarios
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @JWTAuthorization
 public class RESTInspeccion {
 	
-	private InspeccionDAO dao;	
+	private IInspeccionDAO dao;	
 	
-	public RESTInspeccion() {
-		this.dao = new InspeccionDAO();
+	public RESTInspeccion(IInspeccionDAO dao) {
+		this.dao = dao;
 	}
 	
 	@GET

@@ -11,10 +11,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dao.InspectorDAO;
-import dao_abstract.CreateEntityException;
-import dao_abstract.DeleteEntityException;
-import dao_abstract.ReadEntityException;
+import dao_abstract.IInspectorDAO;
+import dao_abstract.exceptions.CreateEntityException;
+import dao_abstract.exceptions.DeleteEntityException;
+import dao_abstract.exceptions.ReadEntityException;
 import jwt.JWTAuthorization;
 import model.personas.Inspector;
 
@@ -24,10 +24,10 @@ import model.personas.Inspector;
 @JWTAuthorization
 public class RESTInspector {
 	
-	private InspectorDAO dao;	
+	private IInspectorDAO dao;	
 	
-	public RESTInspector() {
-		this.dao = new InspectorDAO();
+	public RESTInspector(IInspectorDAO dao) {
+		this.dao = dao;
 	}
 	
 	@GET

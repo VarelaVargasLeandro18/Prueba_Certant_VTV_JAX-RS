@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 import org.json.JSONObject;
 
 import dao.InspectorDAO;
-import dao_abstract.ReadEntityException;
+import dao_abstract.exceptions.ReadEntityException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 

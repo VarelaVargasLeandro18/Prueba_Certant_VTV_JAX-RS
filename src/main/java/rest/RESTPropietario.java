@@ -11,10 +11,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dao.PropietarioDAO;
-import dao_abstract.CreateEntityException;
-import dao_abstract.DeleteEntityException;
-import dao_abstract.ReadEntityException;
+import dao_abstract.IPropietarioDAO;
+import dao_abstract.exceptions.CreateEntityException;
+import dao_abstract.exceptions.DeleteEntityException;
+import dao_abstract.exceptions.ReadEntityException;
 import jwt.JWTAuthorization;
 import model.personas.Propietario;
 
@@ -24,10 +24,10 @@ import model.personas.Propietario;
 @JWTAuthorization
 public class RESTPropietario {
 
-	private PropietarioDAO dao;
+	private IPropietarioDAO dao;
 	
-	public RESTPropietario() {
-		this.dao = new PropietarioDAO();
+	public RESTPropietario(IPropietarioDAO dao) {
+		this.dao = dao;
 	}
 	
 	@GET

@@ -1,6 +1,12 @@
 package dao_abstract;
 
 import com.mycompany.prueba_tecnica_vtv.JPAEntityManagerFactory;
+
+import dao_abstract.exceptions.CreateEntityException;
+import dao_abstract.exceptions.DeleteEntityException;
+import dao_abstract.exceptions.ReadEntityException;
+import dao_abstract.exceptions.UpdateEntityException;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;

@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import dao_abstract.AbstractDAO;
-import dao_abstract.ReadEntityException;
+import dao_abstract.IAutoDAO;
+import dao_abstract.exceptions.ReadEntityException;
 import model.Auto;
 import model.inspeccion.EstadoInspeccion;
 
@@ -12,7 +13,7 @@ import model.inspeccion.EstadoInspeccion;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public class AutoDAO extends AbstractDAO<Auto, String> {
+public class AutoDAO extends AbstractDAO<Auto,String> implements IAutoDAO {
 
     public AutoDAO() {
         super(Auto.class);
@@ -22,8 +23,9 @@ public class AutoDAO extends AbstractDAO<Auto, String> {
      * Primer Informe - Obtención de Autos Inspeccionados en la última semana,
      * es decir, desde hace siete días del día de la fecha hasta hoy.
      * @return List autos inspeccionados en la semana.
-     * @throws dao_abstract.ReadEntityException
+     * @throws dao_abstract.exceptions.ReadEntityException
      */
+    @Override
     public List<Auto> inspeccionadosSemana() throws ReadEntityException {
         
         try {
@@ -44,7 +46,7 @@ public class AutoDAO extends AbstractDAO<Auto, String> {
      * ejecutado una Inspeccion o que no esté aprobada.
      * @param aprobado Valor de String de un estado aprobado.
      * @return 
-     * @throws dao_abstract.ReadEntityException 
+     * @throws dao_abstract.exceptions.ReadEntityException 
      */
     public List<Auto> chequeoVencimiento (EstadoInspeccion aprobado) throws ReadEntityException {
         

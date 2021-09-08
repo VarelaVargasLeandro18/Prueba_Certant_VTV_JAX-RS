@@ -1,14 +1,15 @@
 package dao;
 
 import dao_abstract.AbstractDAO;
-import dao_abstract.ReadEntityException;
+import dao_abstract.IInspectorDAO;
+import dao_abstract.exceptions.ReadEntityException;
 import model.personas.Inspector;
 
 /**
  *
  * @author Varela Vargas Leandro Gastón
  */
-public class InspectorDAO extends AbstractDAO<Inspector, Long> {
+public class InspectorDAO extends AbstractDAO<Inspector, Long> implements IInspectorDAO {
 
     public InspectorDAO() {
         super(Inspector.class);
@@ -20,6 +21,7 @@ public class InspectorDAO extends AbstractDAO<Inspector, Long> {
      * @param contrasenia contraseña del Inspector
      * @return Inspector inspector encontrado.
      */
+    @Override
     public Inspector ingresar( String usuario, String contrasenia ) throws ReadEntityException {
         
         try {

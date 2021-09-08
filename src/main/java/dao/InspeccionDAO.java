@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import dao_abstract.AbstractDAO;
-import dao_abstract.ReadEntityException;
+import dao_abstract.IInspeccionDAO;
+import dao_abstract.exceptions.ReadEntityException;
 import model.inspeccion.Inspeccion;
 import model.personas.Propietario;
 
@@ -12,7 +13,7 @@ import model.personas.Propietario;
  *
  * @author Varela Vargas Leandro Gastón
  */
-public class InspeccionDAO extends AbstractDAO<Inspeccion, Long> {
+public class InspeccionDAO extends AbstractDAO<Inspeccion, Long> implements IInspeccionDAO {
     
     public InspeccionDAO() {
         super(Inspeccion.class);
@@ -21,8 +22,9 @@ public class InspeccionDAO extends AbstractDAO<Inspeccion, Long> {
     /**
      * Segundo Informe Pt2 - Obtención de Lista de Inspecciones en los últimos tres días.
      * @return List inspecciones en los últimos tres días.
-     * @throws dao_abstract.ReadEntityException
+     * @throws dao_abstract.exceptions.ReadEntityException
      */
+    @Override
     public List<Inspeccion> obtenerInspeccionesUltimosTresDias() throws ReadEntityException {
         try {
             String query = "SELECT I FROM Inspeccion I WHERE I.fecha >= :tresdiasantes";
@@ -40,6 +42,7 @@ public class InspeccionDAO extends AbstractDAO<Inspeccion, Long> {
      * @param p Propietario cuyas inspecciones se quieren conocer
      * @return List inspecciones de un dueño si tiene más de tres autos. Empty si solo tiene uno.
      */
+    @Override
     public List<Inspeccion> obtenerInspeccionesDePersonaSiTieneMasDeUnAuto( Propietario p ) throws ReadEntityException {
         try {
             String query = "FROM Inspeccion I WHERE I.inspeccionado IN "

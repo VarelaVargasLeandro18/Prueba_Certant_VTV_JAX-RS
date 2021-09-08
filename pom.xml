@@ -62,6 +62,13 @@
   </build>
 	
 	<dependencies>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		    <version>5.3.9</version>
+		</dependency>
 	
 		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
 		<dependency>
@@ -71,13 +78,6 @@
 		    <scope>test</scope>
 		</dependency>
 			
-		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
-		<dependency>
-		    <groupId>org.glassfish.jersey.inject</groupId>
-		    <artifactId>jersey-hk2</artifactId>
-		    <version>3.0.2</version>
-		</dependency>		
-	
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
 		<dependency>
 		    <groupId>org.mockito</groupId>
@@ -168,14 +168,6 @@
 		    <artifactId>jersey-container-servlet</artifactId>
 		    <version>2.34</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
-		<dependency>
-		    <groupId>org.glassfish.jersey.media</groupId>
-		    <artifactId>jersey-media-json-jackson</artifactId>
-		    <version>2.34</version>
-		</dependency>
-		<!-- END JERSEY JAXRS IMPLEMENTATION -->
 		    	
         
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->

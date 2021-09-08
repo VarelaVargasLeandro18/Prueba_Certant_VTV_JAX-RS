@@ -5,7 +5,6 @@
  */
 package com.mycompany.prueba_tecnica_vtv;
 
-import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
