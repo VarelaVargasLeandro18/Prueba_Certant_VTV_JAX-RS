@@ -12,8 +12,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import dao.EstadoInspeccionDAO;
 import dao_abstract.IAutoDAO;
 import dao_abstract.exceptions.CreateEntityException;
@@ -22,12 +20,13 @@ import dao_abstract.exceptions.ReadEntityException;
 import dao_abstract.exceptions.UpdateEntityException;
 import jwt.JWTAuthorization;
 import model.Auto;
+import rest.interfaces.IRESTAuto;
 
 @Path("auto")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @JWTAuthorization
-public class RESTAuto {
+public class RESTAuto implements IRESTAuto {
 	
 	private IAutoDAO dao;
 	
@@ -35,32 +34,29 @@ public class RESTAuto {
 		this.dao = dao;
 	}
 	
-	@GET
+	@Override
 	public List<Auto> getAutos() throws ReadEntityException {
 		return this.dao.readAll();
 	}
 	
-	@GET
-	@Path("/{autoId}")
+	@Override
 	public Auto getAutoById( @PathParam("autoId") String autoId ) throws ReadEntityException {
 		return this.dao.readOne(autoId);
 	}
 	
-	@POST
+	@Override
 	public void postAuto (Auto auto) throws CreateEntityException {
 		this.dao.create(auto);
 	}
 	
-	@DELETE
-	@Path("/{autoId}")
+	@Override
 	public Auto deleteAuto ( @PathParam("autoId") String autoId ) throws ReadEntityException, DeleteEntityException {
 		Auto auto = this.dao.readOne(autoId);
 		this.dao.delete(auto);
 		return auto;
 	}
 	
-	@PUT
-	@Path("/{autoId}")
+	@Override
 	public Auto updateAuto ( Auto auto, @PathParam("autoId") String autoId ) throws UpdateEntityException, ReadEntityException {
 		Auto autoPersisted = this.dao.readOne(autoId);
 		
@@ -71,8 +67,7 @@ public class RESTAuto {
 		return this.dao.update(autoPersisted);
 	}
 	
-	@GET
-	@Path("/vencidos")
+	@Override
 	public List<Auto> vencidos () throws ReadEntityException {
 		EstadoInspeccionDAO eiDAO = new EstadoInspeccionDAO();
 		return this.dao.chequeoVencimiento(eiDAO.leerPorEstado("Apto"));

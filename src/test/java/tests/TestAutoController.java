@@ -25,6 +25,7 @@ import dao_abstract.exceptions.DeleteEntityException;
 import dao_abstract.exceptions.ReadEntityException;
 import dao_abstract.exceptions.UpdateEntityException;
 import model.Auto;
+import model.inspeccion.EstadoInspeccion;
 import rest.RESTAuto;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,6 +38,7 @@ public class TestAutoController {
 	
 	private List<Auto> autoLista;
 	private Auto auto;
+	private EstadoInspeccion aprobado;
 	
 	@InjectMocks
 	private RESTAuto controller;
@@ -44,33 +46,49 @@ public class TestAutoController {
 	public TestAutoController ( @Mock IAutoDAO dao ) {
 		this.dao = dao;
 	}
-	
     
+	//==========================================================================
+	
     @BeforeAll
     public void prepareMock() throws ReadEntityException, DeleteEntityException, CreateEntityException, UpdateEntityException {
     	this.crearObjetosNecesariosParaMocking();
     	this.prepareMockExceptions();
+    	
     	this.prepareMockRead();
+    	this.prepareMockEspecialMethods();
     }
     
     private void crearObjetosNecesariosParaMocking() {
 		this.auto = new Auto("AA 23 LF", "Marca", "modelo", null);
+		this.aprobado = new EstadoInspeccion( "aprobado", 0 );
 		
 		this.autoLista = new ArrayList<>(1);
 	}
 
-	private void prepareMockRead() {
+	private void prepareMockRead() throws ReadEntityException {
 		Mockito.when( this.dao.readOne( Mockito.isNull() ) ).thenThrow( ReadEntityException.class );  
 		
 		Mockito.when( this.dao.readAll() ).thenReturn( this.autoLista );
     	Mockito.when( this.dao.readOne( Mockito.anyString() ) ).thenReturn( this.auto );
 	}
 	
-	private void prepareMockExceptions() {
+	private void prepareMockExceptions() throws DeleteEntityException, CreateEntityException, UpdateEntityException {
 		Mockito.doThrow( DeleteEntityException.class ).when( this.dao ).delete( Mockito.isNull() );
     	Mockito.doThrow( CreateEntityException.class ).when( this.dao ).create( Mockito.isNull() );
     	Mockito.when( this.dao.update( this.auto ) ).thenThrow( UpdateEntityException.class );    	
 	}
+	
+	private void prepareMockEspecialMethodsExceptions() {
+		
+	}
+	
+	private void prepareMockEspecialMethods() throws ReadEntityException {
+		Mockito.when( this.dao.buscarPorCondicion(this.aprobado) ).thenReturn(this.autoLista);
+		Mockito.when( this.dao.chequeoVencimiento(this.aprobado) ).thenReturn( new ArrayList<>() );
+		Mockito.when( this.dao.inspeccionadosSemana() ).thenReturn( this.autoLista );
+	}
+	
+	//==========================================================================
     
     @Test
     @DisplayName("Buscar un Null - ReadEntityException")
@@ -92,7 +110,7 @@ public class TestAutoController {
     @DisplayName( "Update de un Null - UpdateEntityException" )
     public void updateEntityException() {
     	assertThrows( UpdateEntityException.class, () -> {
-    		this.controller.updateAuto(this.a, "AA 23 LF");
+    		this.controller.updateAuto(this.auto, "AA 23 LF");
     	});
     }
     
@@ -100,7 +118,7 @@ public class TestAutoController {
     @DisplayName( "Lectura Correcta de una entidad" )
     public void readEntity() throws ReadEntityException {
     	Auto returned = this.controller.getAutoById("AA 23 LF");
-    	assertEquals( this.a, returned );
+    	assertEquals( this.auto, returned );
     }
     
 }

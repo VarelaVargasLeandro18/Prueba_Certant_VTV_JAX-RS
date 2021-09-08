@@ -67,9 +67,10 @@
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context</artifactId>
-		    <version>5.3.9</version>
+		    <version>4.3.30.RELEASE</version>
 		</dependency>
-	
+				
+
 		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
 		<dependency>
 		    <groupId>org.junit.platform</groupId>
@@ -144,6 +145,7 @@
 		    <artifactId>jackson-xc</artifactId>
 		    <version>1.9.13</version>
 		</dependency>
+		
 		<!-- SUPPORT PARA DATETIME -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
 		<dependency>
@@ -154,20 +156,30 @@
 		<!-- END JACKSON JSON WRITTER -->
 		
 	
-		<!-- JERSEY JAXRS IMPLEMENTATION -->
-		<dependency>
-		    <groupId>org.glassfish.jersey.inject</groupId>
-		    <artifactId>jersey-hk2</artifactId>
-		    <version>2.34</version>
-		</dependency>
-    
-    	<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet -->
-    	<!-- No utilizo la última versión ya que la versión 3.x no es compatible con Tomcat9 -->
-		<dependency>
-		    <groupId>org.glassfish.jersey.containers</groupId>
-		    <artifactId>jersey-container-servlet</artifactId>
-		    <version>2.34</version>
-		</dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.bundles</groupId>
+            <artifactId>jaxrs-ri</artifactId>
+            <version>2.25</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-moxy -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+            <version>2.25</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.ext/jersey-spring3 -->
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-spring3</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+		
 		    	
         
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
