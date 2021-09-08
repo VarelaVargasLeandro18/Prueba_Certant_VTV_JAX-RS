@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import dao_abstract.IAutoDAO;
+import dao_abstract.IEstadoInspeccionDAO;
 import dao_abstract.exceptions.CreateEntityException;
 import dao_abstract.exceptions.DeleteEntityException;
 import dao_abstract.exceptions.ReadEntityException;
@@ -35,16 +37,18 @@ import rest.RESTAuto;
 public class TestAutoController {
   
 	private final IAutoDAO dao;
+	private final IEstadoInspeccionDAO eiDao;
 	
 	private List<Auto> autoLista;
 	private Auto auto;
-	private EstadoInspeccion aprobado;
+	private EstadoInspeccion apto;
 	
 	@InjectMocks
 	private RESTAuto controller;
 	
-	public TestAutoController ( @Mock IAutoDAO dao ) {
+	public TestAutoController ( @Mock IAutoDAO dao, @Mock IEstadoInspeccionDAO eiDao ) {
 		this.dao = dao;
+		this.eiDao = eiDao;
 	}
     
 	//==========================================================================
@@ -60,8 +64,7 @@ public class TestAutoController {
     
     private void crearObjetosNecesariosParaMocking() {
 		this.auto = new Auto("AA 23 LF", "Marca", "modelo", null);
-		this.aprobado = new EstadoInspeccion( "aprobado", 0 );
-		
+		this.apto = new EstadoInspeccion( "Apto", 0 );
 		this.autoLista = new ArrayList<>(1);
 	}
 
@@ -78,13 +81,11 @@ public class TestAutoController {
     	Mockito.when( this.dao.update( this.auto ) ).thenThrow( UpdateEntityException.class );    	
 	}
 	
-	private void prepareMockEspecialMethodsExceptions() {
-		
-	}
-	
 	private void prepareMockEspecialMethods() throws ReadEntityException {
-		Mockito.when( this.dao.buscarPorCondicion(this.aprobado) ).thenReturn(this.autoLista);
-		Mockito.when( this.dao.chequeoVencimiento(this.aprobado) ).thenReturn( new ArrayList<>() );
+		Mockito.when( this.eiDao.leerPorEstado( "Apto" ) ).thenReturn( this.apto );
+		
+		Mockito.when( this.dao.buscarPorCondicion(this.apto) ).thenReturn(this.autoLista);
+		Mockito.when( this.dao.chequeoVencimiento(this.apto) ).thenReturn( new ArrayList<Auto>() );
 		Mockito.when( this.dao.inspeccionadosSemana() ).thenReturn( this.autoLista );
 	}
 	
@@ -119,6 +120,13 @@ public class TestAutoController {
     public void readEntity() throws ReadEntityException {
     	Auto returned = this.controller.getAutoById("AA 23 LF");
     	assertEquals( this.auto, returned );
+    }
+    
+    @Test
+    @DisplayName( "Lectura de Autos Vencidos" )
+    public void readAutosVencidos() throws ReadEntityException {
+    	List<Auto> vencidos = this.controller.vencidos();
+    	assertTrue( vencidos.isEmpty() );
     }
     
 }

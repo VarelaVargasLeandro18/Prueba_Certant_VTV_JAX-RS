@@ -7,8 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dao.EstadoInspeccionDAO;
 import dao_abstract.IAutoDAO;
+import dao_abstract.IEstadoInspeccionDAO;
 import dao_abstract.exceptions.CreateEntityException;
 import dao_abstract.exceptions.DeleteEntityException;
 import dao_abstract.exceptions.ReadEntityException;
@@ -24,9 +24,11 @@ import rest.interfaces.IRESTAuto;
 public class RESTAuto implements IRESTAuto {
 	
 	private IAutoDAO dao;
+	private IEstadoInspeccionDAO eiDao;
 	
-	public RESTAuto (IAutoDAO dao) {
+	public RESTAuto (IAutoDAO dao, IEstadoInspeccionDAO eiDao) {
 		this.dao = dao;
+		this.eiDao = eiDao;
 	}
 	
 	@Override
@@ -64,8 +66,7 @@ public class RESTAuto implements IRESTAuto {
 	
 	@Override
 	public List<Auto> vencidos () throws ReadEntityException {
-		EstadoInspeccionDAO eiDAO = new EstadoInspeccionDAO();
-		return this.dao.chequeoVencimiento(eiDAO.leerPorEstado("Apto"));
+		return this.dao.chequeoVencimiento(this.eiDao.leerPorEstado("Apto"));
 	}
 
 }

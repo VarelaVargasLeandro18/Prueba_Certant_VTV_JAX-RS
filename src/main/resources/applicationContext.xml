@@ -11,9 +11,11 @@
 	
 	<bean id="restAUTO" class="rest.RESTAuto">
 		<constructor-arg name="dao" ref="autoDao"/>
+		<constructor-arg name="eiDao" ref="eiDao"/>
 	</bean>  
 
 	<bean id="autoDao" class="dao.AutoDAO"/>
+	<bean id="eiDao" class="dao.EstadoInspeccionDAO"/>
 	
 	<bean id="restInspeccion" class="rest.RESTInspeccion">
 		<constructor-arg name="dao" ref="inspeccionDao"/>
