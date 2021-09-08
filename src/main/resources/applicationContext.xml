@@ -10,9 +10,27 @@
 	<context:component-scan base-package="java"/>
 	
 	<bean id="restAUTO" class="rest.RESTAuto">
-		<constructor-arg name="dao" ref="autoDao"></constructor-arg>
+		<constructor-arg name="dao" ref="autoDao"/>
 	</bean>  
 
 	<bean id="autoDao" class="dao.AutoDAO"/>
+	
+	<bean id="restInspeccion" class="rest.RESTInspeccion">
+		<constructor-arg name="dao" ref="inspeccionDao"/>
+	</bean>
+	
+	<bean id="inspeccionDao"  class="dao.InspeccionDAO"/>
+	
+	<bean id="restInspector" class="rest.RESTInspector">
+		<constructor-arg name="dao" ref="inspectorDao"/>
+	</bean>
+	
+	<bean id="inspectorDao" class="dao.InspectorDAO"/>
+	
+	<bean id="restPropietario" class="rest.RESTPropietario">
+		<constructor-arg name="dao" ref="propietarioDao"/>
+	</bean>
+	
+	<bean id="propietarioDao" class="dao.PropietarioDAO"/>
 	
 </beans>

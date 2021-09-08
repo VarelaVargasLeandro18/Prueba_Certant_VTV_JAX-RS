@@ -3,11 +3,7 @@ package rest;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -17,12 +13,13 @@ import dao_abstract.exceptions.DeleteEntityException;
 import dao_abstract.exceptions.ReadEntityException;
 import jwt.JWTAuthorization;
 import model.inspeccion.Inspeccion;
+import rest.interfaces.IRESTInspeccion;
 
 @Path("inspeccion")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @JWTAuthorization
-public class RESTInspeccion {
+public class RESTInspeccion implements IRESTInspeccion {
 	
 	private IInspeccionDAO dao;	
 	
@@ -30,25 +27,23 @@ public class RESTInspeccion {
 		this.dao = dao;
 	}
 	
-	@GET
+	@Override
 	public List<Inspeccion> getInspeccions() throws ReadEntityException {
 		return this.dao.readAll();
 	}
 	
-	@GET
-	@Path("/{InspeccionId}")
-	public Inspeccion getInspeccionById( @PathParam("InspeccionId") String InspeccionId ) throws ReadEntityException {
+	@Override
+	public Inspeccion getInspeccionById( String InspeccionId ) throws ReadEntityException {
 		return this.dao.readOne( Long.parseLong(InspeccionId) );
 	}
 	
-	@POST
+	@Override
 	public void postInspeccion (Inspeccion Inspeccion) throws CreateEntityException {
 		this.dao.create(Inspeccion);
 	}
 	
-	@DELETE
-	@Path("/{InspeccionId}")
-	public Inspeccion deleteInspeccion ( @PathParam("InspeccionId") String InspeccionId ) throws ReadEntityException, DeleteEntityException {
+	@Override
+	public Inspeccion deleteInspeccion ( String InspeccionId ) throws ReadEntityException, DeleteEntityException {
 		Inspeccion Inspeccion = this.dao.readOne( Long.parseLong(InspeccionId) );
 		this.dao.delete(Inspeccion);
 		return Inspeccion;

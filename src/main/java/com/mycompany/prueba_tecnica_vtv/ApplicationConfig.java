@@ -6,13 +6,9 @@
 package com.mycompany.prueba_tecnica_vtv;
 
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-import org.glassfish.hk2.utilities.binding.AbstractBinder;
-import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import dao.AutoDAO;
-import dao_abstract.IAutoDAO;
 
 /**
  *
@@ -28,7 +24,7 @@ import dao_abstract.IAutoDAO;
  */
 
 @ApplicationPath("VTV")
-public class ApplicationConfig extends ResourceConfig {
+public class ApplicationConfig extends Application {
 	
 	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	
